@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+  height: 600px;
+  background-color: aliceblue;
+}
+
+span{
+  margin: 1em;
+  color: red;
+}
+
+li{
+  list-style: none;
+}
+
