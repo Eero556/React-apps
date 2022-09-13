@@ -1,0 +1,37 @@
+.App {
+  
+  display: flex;
+  justify-content: center;
+}
+
+
+.stopwatch{
+  height: 100px;
+  width: 134px;
+  background-color: whitesmoke;
+}
+
+.stopwatch p{
+  text-align: center;
+  color: brown;
+}
+
+.stopbutton{
+  background-color: red;
+  margin: 1em;
+  color: white;
+  border-radius:40px;
+}
+
+.startbutton{
+  background-color: blue;
+  margin: 1em;
+  color: white;
+  border-radius:40px;
+}
+
+.resetbutton{
+  background-color: green;
+  color: white;
+  border-radius:40px;
+}
