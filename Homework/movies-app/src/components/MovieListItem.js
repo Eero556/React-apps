@@ -17,7 +17,6 @@ function MovieListItem(props) {
         const getData = async () => {
             const { data } = await axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=79f98bb449c9a0eb366576882d49539b&append_to_response=videos');
             setMovie(data);
-            console.log(data)
         };
         getData();
     }, []);
@@ -44,7 +43,14 @@ function MovieListItem(props) {
     }
 
 
-
+    const opts = {
+        height: '390',
+        width: '640',
+        playerVars: {
+          // https://developers.google.com/youtube/player_parameters
+          autoplay: 1,
+        },
+      };
 
 
 
@@ -77,7 +83,7 @@ function MovieListItem(props) {
                 >
                     <button onClick={closeModal}>close</button>
                     <div>
-                        <YouTube videoId={trailer} />
+                        <YouTube videoId={trailer} opts={opts} />
                     </div>
                 </Modal >
             </div>
