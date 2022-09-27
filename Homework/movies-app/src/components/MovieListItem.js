@@ -1,14 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import Modalmodel from './Modal';
-
+import YouTube from 'react-youtube';
+import Modal from "react-modal"
 function MovieListItem(props) {
 
     const [movie, setMovie] = useState([])
+    const [trailer, setTrailer] = useState("")
     // id from array
     const id = props.movie.id
-    
+
 
 
 
@@ -32,20 +33,54 @@ function MovieListItem(props) {
             genres += movie.genres[i].name + " ";
         }
     }
-    
 
 
 
+    const videoPressed = (key) => {
+        console.log(key)
+        setTrailer(key)
+        setIsOpen(true)
+
+    }
+
+
+
+
+
+
+    // get first youtube video
+    var video = "";
+    if (movie !== undefined && movie.videos !== undefined && movie.videos.results !== undefined) {
+        video = <span style={{ color: 'blue', cursor: 'pointer' }} onClick={() => videoPressed(movie.videos.results[0].key)}>{movie.videos.results[0].name}</span>
+    }
+
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    const closeModal = () => {
+        setIsOpen(false)
+    }
 
     return (
         <div className="Movie">
-            
             <img src={imageurl} alt="imageurl" />
             <p className="MovieTitle">{props.movie.original_title} : {props.movie.release_date}</p>
             <p className="MovieText">{props.movie.overview}</p>
             <span className="GenresText">Genres: {genres}</span><br />
-            <div><Modalmodel jotain={"ee"}/></div>
-            
+            <span className="VideosText">Video: {video}</span>
+            <div>
+                <Modal
+                    ariaHideApp={false}
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Example Modal"
+                >
+                    <button onClick={closeModal}>close</button>
+                    <div>
+                        <YouTube videoId={trailer} />
+                    </div>
+                </Modal >
+            </div>
         </div>
     )
 }
