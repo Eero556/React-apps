@@ -17,6 +17,7 @@ function MovieListItem(props) {
         const getData = async () => {
             const { data } = await axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=79f98bb449c9a0eb366576882d49539b&append_to_response=videos');
             setMovie(data);
+
         };
         getData();
     }, []);
@@ -44,8 +45,8 @@ function MovieListItem(props) {
 
 
     const opts = {
-        height: '390',
-        width: '640',
+        height: '890',
+        width: '1300',
         playerVars: {
           // https://developers.google.com/youtube/player_parameters
           autoplay: 1,
@@ -74,7 +75,6 @@ function MovieListItem(props) {
             <p className="MovieText">{props.movie.overview}</p>
             <span className="GenresText">Genres: {genres}</span><br />
             <span className="VideosText">Video: {video}</span>
-            <div>
                 <Modal
                     ariaHideApp={false}
                     isOpen={modalIsOpen}
@@ -82,11 +82,10 @@ function MovieListItem(props) {
                     contentLabel="Example Modal"
                 >
                     <button onClick={closeModal}>close</button>
-                    <div>
+                    <div className='trailer'>
                         <YouTube videoId={trailer} opts={opts} />
                     </div>
                 </Modal >
-            </div>
         </div>
     )
 }
