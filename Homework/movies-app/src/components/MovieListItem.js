@@ -12,13 +12,13 @@ function MovieListItem(props) {
 
 
 
+    const getData = async () => {
+        const { data } = await axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=79f98bb449c9a0eb366576882d49539b&append_to_response=videos');
+        setMovie(data);
+
+    };
 
     useEffect(() => {
-        const getData = async () => {
-            const { data } = await axios.get('https://api.themoviedb.org/3/movie/' + id + '?api_key=79f98bb449c9a0eb366576882d49539b&append_to_response=videos');
-            setMovie(data);
-
-        };
         getData();
     }, []);
 
